@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import streamlit as st
 
 # Sidebar Navigation
 def sidebar_navigation():

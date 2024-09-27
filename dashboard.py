@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
+import streamlit as st
 
 # Sidebar Navigation
 def sidebar_navigation():
-    st.sidebar.title("BootBuddy")
-    st.sidebar.image("assets/bootbuddy_logo.png", width=150)  # Add your logo here
-    st.sidebar.write("Navigation")
+    st.sidebar.title("Go to")
+    selection = st.sidebar.radio(" ",["Dashboard", "Team", "Feedback"]) # Menu items
 
-    # Menu items
-    selection = st.sidebar.radio("Go to", ["Dashboard", "Team", "Feedback"])
     return selection
 
 # Render the Dashboard page
@@ -26,7 +24,7 @@ def feedback():
     st.write("Feedback form or link will go here.")
 
 # Dashboard logic based on user choice
-def dashboard_logic():
+def show_dashboard():
     # Sidebar navigation
     page = sidebar_navigation()
 
@@ -36,3 +34,8 @@ def dashboard_logic():
         team()
     elif page == "Feedback":
         feedback()
+
+    # Add a logout button
+    if st.button("Logout"):
+        st.session_state['logged_in'] = False
+        st.rerun()  # Refresh to return to the login page

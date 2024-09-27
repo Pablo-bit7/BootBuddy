@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import streamlit as st
 
+
 def authenticate(username, password):
     if username == "admin" and password == "password":  # Hardcoded credentials for testing
         return True
@@ -41,7 +42,7 @@ def show_login_page():
     st.markdown("<h1 style='text-align: center;'>Welcome to BootBuddy!</h1>", unsafe_allow_html=True)
 
     # Username and Password inputs
-    username = st.text_input("Username")
+    username = st.text_input("Username / Email")
     password = st.text_input("Password", type="password")
 
     # Centering the button and using the real Streamlit button for functionality
@@ -58,10 +59,12 @@ def show_login_page():
     
     # Handle the button logic after click
     if login_button:
-        if authenticate(username, password):
-            st.success("Login successful!")
+        if authenticate(username, password): #st.success("Login successful!")
+            st.session_state['logged_in'] = True  # Mark the user as logged in
+            st.rerun() # Redirect to the dashboard immediately after login
         else:
             st.error("Invalid username or password")
 
     if signup_button:
         st.info("Sign up page coming soon!")  # Placeholder for signup action
+

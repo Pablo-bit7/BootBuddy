@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import streamlit as st
 from login import show_login_page
-from dashboard import show_dashboard
+from dashboard import navigation
 
 
 # Set page configuration
@@ -15,7 +15,7 @@ def main():
 
     # Check login status
     if st.session_state['logged_in']:
-        show_dashboard()  # Show dashboard if logged in
+        navigation()  # Show dashboard if logged in
     else:
         show_login_page()  # Show login page if not logged in
 

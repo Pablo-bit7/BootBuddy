@@ -1,12 +1,6 @@
 #!/usr/bin/env python3
 import streamlit as st
 
-# Sidebar Navigation
-def sidebar_navigation():
-    st.sidebar.title("Go to")
-    selection = st.sidebar.radio(" ",["Dashboard", "Team", "Feedback"]) # Menu items
-
-    return selection
 
 # Render the Dashboard page
 def dashboard():
@@ -24,18 +18,17 @@ def feedback():
     st.write("Feedback form or link will go here.")
 
 # Dashboard logic based on user choice
-def show_dashboard():
-    # Sidebar navigation
-    page = sidebar_navigation()
+def navigation():
+    # Navigation definition
+    page = st.navigation([
+        st.Page(dashboard, title="Dashboard", icon="🏠"),
+        st.Page(team, title="Team", icon="👥"),
+        st.Page(feedback, title="Feedback", icon="💬"),
+    ])
+    page.run() # Run the selected page
 
-    if page == "Dashboard":
-        dashboard()
-    elif page == "Team":
-        team()
-    elif page == "Feedback":
-        feedback()
-
-    # Add a logout button
-    if st.button("Logout"):
+    # Logout button styled separately
+    if st.sidebar.button("Logout"):
         st.session_state['logged_in'] = False
         st.rerun()  # Refresh to return to the login page
+

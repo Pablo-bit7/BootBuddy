@@ -18,7 +18,7 @@ def feedback():
     st.write("Feedback form or link will go here.")
 
 # Dashboard logic based on user choice
-def navigation():
+def show_dashboard():
     # Navigation definition
     page = st.navigation([
         st.Page(dashboard, title="Dashboard", icon="🏠"),
@@ -29,6 +29,6 @@ def navigation():
 
     # Logout button styled separately
     if st.sidebar.button("Logout"):
-        st.session_state['logged_in'] = False
+        st.session_state.clear()
         st.rerun()  # Refresh to return to the login page
 
